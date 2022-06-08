@@ -1,0 +1,23 @@
+---
+title: "_Rmd"
+author: "Daniel Craig"
+date: '2022-06-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.path = "../images/")
+```
+
+## R Markdown
+
+What are your thoughts on R vs whatever other software you've used?  What functionality do you like about R?  What parts do you miss about your other language?  Do you consider R a difficult language to learn? 
+
+
+
+Example R Markdown
+
+_Rmd
+
+
