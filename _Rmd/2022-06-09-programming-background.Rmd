@@ -2,7 +2,7 @@
 title: "Programming Background"
 author: "Daniel Craig"
 date: '2022-06-08'
-output: "github_document"
+output: 
 ---
 
 ```{r setup, include=FALSE}
@@ -35,7 +35,7 @@ plot(iris)
 
 
 
-rmarkdown::render("../_Rmd/GitHubblog.Rmd",output_format = github_document, output_dir = "../_posts", output_options = list(keep_html=FALSE))
+rmarkdown::render("../_Rmd/2022-06-09-programming-background.Rmd",output_format = "md_document", output_dir = "../_posts", output_options = list(keep_html=FALSE))
 
 Example R Markdown
 
