@@ -35,7 +35,7 @@ plot(iris)
 
 
 
-rmarkdown::render("../_Rmd/2022-06-09-programming-background.Rmd",output_format = "md_document", output_dir = "../_posts", output_options = list(keep_html=FALSE))
+rmarkdown::render("../_Rmd/2022-06-09-programming-background.Rmd",output_format = "md_document", output_file = "2022-06-09-programming-background.Rmd",output_dir = "../_posts", output_options = list(keep_html=FALSE))
 
 Example R Markdown
 
