@@ -1,0 +1,189 @@
+---
+title: "HW6 - Summarizing Data"
+author: "Daniel Craig"
+date: '2022-06-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(haven)
+library(readr)
+library(readxl)
+```
+
+
+
+
+```{r 1., include = TRUE}
+crabsData <- read_table("C:/Users/dcraig/Documents/Repos/d-ev-craig.github.io/_HW/HW6 - Summarizing Data/crabs.txt", col_types = list('f','f','d','d','d','f','f'))
+crabsData
+crabsData <- crabsData[1:6]
+
+
+levels(crabsData$color) <- c("medium","dark","light","darker")
+
+#crabsData$color <- ordered(crabsData$color, levels = c("light","medium","dark","darker"))
+
+levels(crabsData$spine) <- c("both worn or broken","both good","one worn or broken")
+#crabsData$spine <- ordered(crabsData$spine, levels = c("both good","one worn or broken","both worn or broken"))
+
+levels(crabsData$y) <- c("At least 1 Sattelite","No Satellite")
+#crabsData$y <- ordered(crabsData$y, levels = c("No Satellite","At least 1 Sattelite"))
+
+crabsData
+
+```
+
+
+
+
+2.  Create a one-way contingency table of the spine variable using the table() function
+
+
+```{r 2., include= TRUE}
+table(crabsData$spine)
+
+```
+
+3. Recreate the above one-way table using tidyverse functions. Hint: group_by() and summarize() can
+be used with the n() function to do the counting.
+
+```{r 3., include=TRUE}
+
+
+cD <- crabsData %>% group_by(crabsData$spine)
+cD %>% summarise(n())
+
+```
+
+4.  Create a two-way contingency table between the satellite and spine variables using the table() function.
+Write text describing what two of the numbers in the table represent.
+
+```{r 4. ,include = TRUE}
+table(crabsData$satell,crabsData$spine)
+
+```
+We can see the frequency at which female crabs have broken or worn spines for every level of satellites. For example, at 0 satellites, there were 11 female crabs that had either a both good level of spine; 8 female crabs had either one worn or broken spine; 43 female crabs had either both worn or broken spines.  
+  
+  
+
+5.Recreate the above two-way table using tidyverse functions. Make the final table print out in a wide
+format using pivot_wider().
+
+```{r 5., include=TRUE}
+
+
+cD_satvspine <- crabsData %>% group_by(spine,satell)
+cD_satvspine
+cD_satvspine %>% summarise(n()) %>% pivot_wider(names_from = "spine", values_from = "n()", values_fill = 0)
+```
+  
+ 6. Create a three way table between the color, spine, and satellite variables using the table() function.
+Output the table. Then, using that table object, print out a two-way table between spine and satellite
+for crabs with ‘darker’ color. Write text describing what one of the numbers in the table represents.
+
+```{r 6., include=TRUE}
+OohLaLa <-table(crabsData$color,crabsData$spine,crabsData$satell)
+OohLaLa
+
+tab <- OohLaLa
+str(tab)
+
+tab[4,,]
+
+```
+For female crabs with a color of darker, and having 0 satellites, there was only one crab with both spines good, one crab with one spine worn or broken, and thirteen crabs with both spines worn or broken.
+
+
+7. 
+  
+```{r 7., include=TRUE}
+ColorvSatell <- ggplot(crabsData, aes(x = color))
+ColorvSatell + geom_bar(aes(fill = as.factor(y)), position = "dodge")+ labs(x = "Female Crab Color") +   scale_x_discrete(labels = c("light","medium","dark","darker"))+
+  scale_fill_discrete(name = "",labels = c("No Satellite","At least 1 Sattelite"))+
+  coord_flip()
+```
+
+```{r 7. Pt.2, include= TRUE}
+
+#this was blowing my mind for so long
+
+crabsDataBroke <- crabsData
+
+
+crabsDataBroke$y <- ordered(crabsDataBroke$y, levels = c('No Satellite','At least 1 Sattelite'))
+
+
+crabsDataBroke$spine <- ordered(crabsDataBroke$spine, levels = c('both good','one worn or broken','both worn or broken'))
+
+
+SpinevSatell <- ggplot(crabsDataBroke, aes(x = spine))
+SpinevSatell + geom_bar(aes(fill = as.factor(y)), position = "dodge")+ labs(x = "Female Crab Spine Condition") + scale_x_discrete(labels = c("Both Good","One Worn/Broken","Both Worn/Broken"))+
+  scale_fill_discrete(name = "",labels = c("No Satellite","At least 1 Sattelite"))+
+  coord_flip()
+
+
+```
+
+
+```{r 7. Pt.3, include=TRUE}
+# Please stop making me do this
+crabsDataBrokev2 <- crabsData
+
+crabsDataBrokev2$spine <- ordered(crabsDataBrokev2$spine, levels = c('one worn or broken','both worn or broken','both good'))
+
+crabsDataBrokev2$color <- ordered(crabsDataBrokev2$color, levels = c('darker','medium','light','dark'))
+
+SpinevColor <- ggplot(crabsDataBrokev2, aes(x = spine))
+SpinevColor + geom_bar(aes(fill = as.factor(color)), position = "dodge")+ labs(x = "Female Crab Spine Condition") + scale_x_discrete(labels = c("Both Good","One Worn/Broken","Both Worn/Broken"))+
+  scale_fill_discrete(name = "",labels = c("light","medium","dark","darker"))+
+  coord_flip()
+
+SpinevColor <- ggplot(crabsData, aes(x = spine))
+SpinevColor + geom_bar(aes(fill = as.factor(color)), position = "dodge")+ labs(x = "Female Crab Spine Condition") + scale_x_discrete(labels = c("Both Good","One Worn/Broken","Both Worn/Broken"))+
+  scale_fill_discrete(name = "",labels = c("light","medium","dark","darker"))+
+  coord_flip()
+
+```
+
+8.  Recreate the set of side-by-side bar plots below. You’ll need to look up how to orient the x-axis lables to 45 degrees. Write text that comments on any patterns you see.
+
+facet_grid(cols=satell)
+
+9. Recreate the summary statistics below. Write text that interprets one of the sets of summary stats.
+
+
+```{r}
+crabsData$color <- ordered(crabsData$color, levels = c('light','medium','dark','darker'))
+crabsData$y <- ordered(crabsData$y, levels = c('No Satellite','At least 1 Sattelite'))
+crabsData %>% group_by(color, y) %>% summarise(Avg = round(mean(weight)), sd = round(sd(weight)), med = round(median(weight)), IQR = round(IQR(weight)))
+```
+
+
+
+10. 
+```{r}
+
+crabsData$y <- ordered(crabsData$y, levels = c('No Satellite','At least 1 Sattelite'))
+
+WeightvSatel <- ggplot(crabsData, aes(x = y, y = weight))
+WeightvSatel + geom_boxplot(fill = "white",position ="dodge") + geom_jitter(aes(color = as.factor(y)),size =2)
+
+WidthvSatel <- ggplot(crabsData, aes(x = y, y = width))
+WidthvSatel + geom_boxplot(fill = "white",position ="dodge") + geom_jitter(aes(color = as.factor(y)),size =2)+scale_fill_discrete(name = "y",labels = 'No Satellite','At least 1 Sattelite')
+
+```
+
+11.  
+
+```{r}
+
+cor(crabsData$weight, crabsData$width)
+
+WeightvWidth <- ggplot(crabsData, aes(x = weight, y = width))
+WeightvWidth + geom_point() + geom_smooth() + geom_smooth(method = lm, col="blue")
+
+```
+

@@ -39,6 +39,6 @@ Here were the different render functions I was playing with to output this blog 
 
 The winner seems to be the first
 
-rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/\_Rmd/2022-06-09-programming-background.Rmd",output_format = md_document("markdown_github"), output_file = "2022-06-09-programming-background",output_dir = "C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/\_posts", output_options = list(keep_html=FALSE))
+rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_Rmd/2022-06-09-programming-background.Rmd",output_format = md_document("markdown_github"), output_file = "2022-06-09-programming-background",output_dir = "C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_posts", output_options = list(keep_html=FALSE))
 
-rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/\_Rmd/2022-06-09-programming-background.Rmd",output_format = "github_document", output_file = "2022-06-09-programming-background",output_dir = "../d-ev-craig.github.io/\_posts", output_options = list(c(keep_html=FALSE, html_preview = FALSE)))
+rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_Rmd/2022-06-09-programming-background.Rmd",output_format = "github_document", output_file = "2022-06-09-programming-background",output_dir = "../d-ev-craig.github.io/_posts", output_options = list(c(keep_html=FALSE, html_preview = FALSE)))
