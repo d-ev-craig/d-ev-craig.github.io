@@ -28,7 +28,7 @@ Just to ensure that you don't think I picked this because it was easy, I have go
 
 
 ```{r}
-seoulBike <- read_csv(file = "../d-ev-craig.github.io/_datasets/SeoulBikeData.csv", locale=locale(encoding="latin1"))
+seoulBike <- read_csv(file = "../_Rmd/_datasets/SeoulBikeData.csv", locale=locale(encoding="latin1"))
 seoulBike <- seoulBike[ ,!(names(seoulBike) %in% c("Date"))]
 
 names(seoulBike) <- c('RentBikeCount','Hour','Temp','Humid','WindSpeed','Visi','DewPointTemp','SolarRad','Rainfall','Snowfall','Seasons','Holiday','WorkDay','HighRentDay')
@@ -45,7 +45,7 @@ g + geom_point() + geom_smooth() + geom_smooth(method = glm, col = "Red") +
 
 
 
-```{r}
+
 rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_Rmd/2022-06-30-CoolThing.Rmd",output_format = md_document("markdown_github"), output_file = "2022-06-30-CoolThing",output_dir = "C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_posts", output_options = list(keep_html=FALSE))
-```
+
 
