@@ -37,7 +37,7 @@ calculator… limited to the addition and subtraction symbols.*
 plot(iris)
 ```
 
-![](../images/unnamed-chunk-1-1.png)
+![](../images/unnamed-chunk-30-1.png)
 
 ### The Pain
 

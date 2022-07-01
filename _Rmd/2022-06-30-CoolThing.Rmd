@@ -1,0 +1,51 @@
+
+---
+title: "Coolest Thing You've Learned So Far"
+author: "Daniel Craig"
+date: '2022-06-08'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(rmarkdown)
+
+```
+## Coolest Thing I've Learned in R
+
+So I think the coolest thing I've learned in R is honestly extremely simple.
+
+The nature in which the language is interpreted is so simple it blows my mind. Particularly when I am rebuilding/morphing/manipulating data sets its just easy.
+
+For example, when we were doing our caretPackage and model training homework, I wanted to remove the date column from my dataset. I'm sure there's a lot of ways to pop off one column, but the below lines blew me away:
+
+`seoulBike <- seoulBike[ ,!(names(seoulBike) %in% c("Date"))]`
+
+Any column with the name Date in it? Gone! All in the same line as the one I set the object again. I come from an SQL background and the ability to manipulate objects is a bit more crude so this is just very nice for me. I'm sure dev's from other languages don't think this is a big deal but it really just makes me appreciate how eloquently some coding languages R.
+
+Just to ensure that you don't think I picked this because it was easy, I have gone ahead and attempted a plot below.
+
+
+```{r}
+seoulBike <- read_csv(file = "../d-ev-craig.github.io/_datasets/SeoulBikeData.csv", locale=locale(encoding="latin1"))
+seoulBike <- seoulBike[ ,!(names(seoulBike) %in% c("Date"))]
+
+names(seoulBike) <- c('RentBikeCount','Hour','Temp','Humid','WindSpeed','Visi','DewPointTemp','SolarRad','Rainfall','Snowfall','Seasons','Holiday','WorkDay','HighRentDay')
+
+names(seoulBike)
+
+correlation <- cor(seoulBike$RentBikeCount, seoulBike$Temp)
+
+g <- ggplot(data = seoulBike, aes(x = RentBikeCount, y = Temp)) 
+g + geom_point() + geom_smooth() + geom_smooth(method = glm, col = "Red") +
+  geom_text(x=2500, y = 5, size = 5, label = paste0("Correlation = ", round(correlation, 2)))
+```
+
+
+
+
+```{r}
+rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_Rmd/2022-06-30-CoolThing.Rmd",output_format = md_document("markdown_github"), output_file = "2022-06-30-CoolThing",output_dir = "C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_posts", output_options = list(keep_html=FALSE))
+```
+
