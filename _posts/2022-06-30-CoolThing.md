@@ -65,10 +65,8 @@ g + geom_point() + geom_smooth() + geom_smooth(method = glm, col = "Red") +
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](C:/Users/dcraig/Documents/Repos/d-ev-craig.github.io/_posts/2022-06-30-CoolThing_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](../images/unnamed-chunk-1-1.png)
 
-rmarkdown::render(“C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/\_Rmd/2022-06-30-CoolThing.Rmd”,output_format
-= md_document(“markdown_github”), output_file =
-“2022-06-30-CoolThing”,output_dir =
-“C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/\_posts”,
-output_options = list(keep_html=FALSE))
+rmarkdown::render(“\_Rmd/2022-06-30-CoolThing.Rmd”,output_format =
+md_document(“markdown_github”),output_dir = “\_posts”, output_options =
+list(keep_html=FALSE))

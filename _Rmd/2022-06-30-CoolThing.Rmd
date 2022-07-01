@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(tidyverse)
 library(rmarkdown)
-
+knitr::opts_chunk$set(fig.path = "../images/")
 ```
 ## Coolest Thing I've Learned in R
 
@@ -27,7 +27,7 @@ Any column with the name Date in it? Gone! All in the same line as the one I set
 Just to ensure that you don't think I picked this because it was easy, I have gone ahead and attempted a plot below.
 
 
-```{r}
+```{r , eval=TRUE}
 seoulBike <- read_csv(file = "../_Rmd/_datasets/SeoulBikeData.csv", locale=locale(encoding="latin1"))
 seoulBike <- seoulBike[ ,!(names(seoulBike) %in% c("Date"))]
 
@@ -46,6 +46,7 @@ g + geom_point() + geom_smooth() + geom_smooth(method = glm, col = "Red") +
 
 
 
-rmarkdown::render("C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_Rmd/2022-06-30-CoolThing.Rmd",output_format = md_document("markdown_github"), output_file = "2022-06-30-CoolThing",output_dir = "C:/users/dcraig/Documents/Repos/d-ev-craig.github.io/_posts", output_options = list(keep_html=FALSE))
+
+rmarkdown::render("_Rmd/2022-06-30-CoolThing.Rmd",output_format = md_document("markdown_github"),output_dir = "_posts", output_options = list(keep_html=FALSE))
 
 
