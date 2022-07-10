@@ -1,6 +1,14 @@
 #Project 2
 
-Link to Project:
+Link to Project: <https://github.com/ecbrown7/ST558_project2> Link to
+Repo: <https://github.com/ecbrown7/ST558_project2.git>
+
+Project Outline:
+
+THe project was focused on using boosting trees, random forests and
+comparing them to linear models. It also gave a bit of an exercise in
+picking variables to model by. The data it focused on was different news
+categories hosted on mashable.com
 
 • what would you do differently?
 
