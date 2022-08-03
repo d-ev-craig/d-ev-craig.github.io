@@ -1,0 +1,79 @@
+---
+title: "Favorite Models So Far"
+author: "Daniel Craig"
+date: '2022-08-02'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+library(rmarkdown)
+library(tidyverse)
+library(haven)
+```
+
+## Favorite Modeling Methods I've Learned from ST558  
+  Before I dive into my favorite method, let's take a list at what methods we've covered thus far.
+  
+Models/Methods:
+    * Regression Tree's
+    * Classification Tree's
+        * Boosting
+        * Bagging
+        * RandomForest
+    * Simple Linear Regression
+    * Multiple Linear Regression
+    * Logistic Regression
+    * k - Nearest Neighbors
+    * Clustering
+    * Principal Components Analysis
+    
+I think my favorite would be logistic regression because of just how useful answering Yes/No and evaluating the odds.
+
+We'll run this example using the Titanic Dataset to predict whether an individual survived or not using some other variables we have.
+
+```{r}
+
+titanicData <- read_csv("_Rmd/_datasets/titanic.csv") #assigning to different variable
+attributes(titanicData)$names # take a look at the different variables we have
+
+```
+Here are the variables we have access to. I think we will keep it to pclass, sex, and age for predictors. I think a couple of these variables will have some collinearity.
+
+We will also just take a quick look at what the table would look like to make sure we don't miss anthing
+
+```{r}
+knitr::kable(head(titanicData)) # A simple table to see example data
+```
+
+
+
+
+
+
+```{r}
+glmFit <- glm(survived ~ age*sex*pclass, data = titanicData, family = "binomial")
+summary(glmFit)
+```
+So we can the most significant were the intercept, your class, and your gender. No surprises there, but there was a noteworth interactino between sex and class. I would imagine that if you were a man in first class you probably knew important people.
+
+```{r}
+
+
+predict(glmFit, newdata = data.frame(pclass = c(1,2,3), sex = c('male','female','female'), age = c(25,80,30)),
+				type = "response", se.fit = TRUE)
+
+```
+Surprisingly, we find that 2nd class 80 yr old woman would be predicted more likely to survive than a 30 yr old woman in 3rd class.
+```{r}
+ggiraphExtra::ggPredict(glmFit)
+```
+Observing our graph we can also see the significant increase at the middle class in the count of female survivors in comparison to male survivors in 1st or 3rd class.
+
+This may also be due to how many survivors there were of either gender at each class, but we can delve into that another time.
+
+
+In summary of why I like logistic regression, and regression in general, its easier in my experience to tell what matters and when. I've spent more time in other classes looking at the amount of variability explained by adding and removing matters and it was mainly focused on regression examples. SO maybe I'm biased, but I think the power of logistic regression in these yes/no type scenarios to be concretely useful.
+
+R to make this post:
+#rmarkdown::render("_Rmd/2022-07-10-Project-2-Blog-Post.Rmd",output_format = #md_document("markdown_github"),output_dir = "_posts", output_options = list(keep_html=FALSE))
