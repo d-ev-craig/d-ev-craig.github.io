@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 library(rmarkdown)
 library(tidyverse)
 library(haven)
+knitr::opts_chunk$set(fig.path = "../images/")
 ```
 
 ## Favorite Modeling Methods I've Learned from ST558  
@@ -76,4 +77,4 @@ This may also be due to how many survivors there were of either gender at each c
 In summary of why I like logistic regression, and regression in general, its easier in my experience to tell what matters and when. I've spent more time in other classes looking at the amount of variability explained by adding and removing matters and it was mainly focused on regression examples. SO maybe I'm biased, but I think the power of logistic regression in these yes/no type scenarios to be concretely useful.
 
 R to make this post:
-#rmarkdown::render("_Rmd/2022-07-10-Project-2-Blog-Post.Rmd",output_format = #md_document("markdown_github"),output_dir = "_posts", output_options = list(keep_html=FALSE))
+rmarkdown::render("_Rmd/2022-08-02-Blog Post 4-Favorite Model.Rmd",output_format = md_document("markdown_github"),output_dir = "_posts", output_options = list(keep_html=FALSE))

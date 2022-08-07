@@ -1,0 +1,24 @@
+---
+title: "5th Blog Post ST558 Wrap Up"
+author: "Daniel Craig"
+date: '2022-08-04'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+  **What are your current thoughts in terms of using R for data science - do you think you'll continue to use R going forward?**
+  
+  Although I haven't completely delved into Python quite yet so I don't know how they compare... I'll certainly continue to use R until I find something that does the job better. I'm sure that when it comes to applications I'll probably use Python, but the features that I really value is the ability to so cleanly re-produce and communicate findings or discovery.
+  
+  
+  **Why or why not? What things are you going to do differently in practice now that you've had this course?**
+  
+  I'll certainly use R for a while since its the tool I'm most proficient in. I think the only thing I'll do differently is take a look to see if there are other commands that can do the same thing or different package that can do the same thing. Maybe there are other packages out there that have more functionality.
+  
+  
+  
+  **what areas of statistics/data science are you thinking about exploring further?**
+  
+  In the grand scheme of things, I'd like to get into Decision Making and guiding Computers to be more human in their actions for game development. The other would be assisting with teaching physical machines how to correctly move in the physical world. For example, walking up stairs or doing flips.

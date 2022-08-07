@@ -1,0 +1,52 @@
+---
+title: "DotaNP"
+author: "Daniel Craig"
+date: '2022-08-07'
+output: html_document
+---
+```{r}
+library(readr)
+library(dplyr)
+library(randomForest)
+library(caret)
+library(ggplot2)
+library(gbm)
+library(ggsci)
+```
+
+
+```{r}
+#data<-read_csv("_Projects\\Project3\\datasets\\NPBase.csv")
+
+data<-read_csv("NPBase.csv")
+
+```
+
+```{r}
+
+varname <- "gold"
+summary(data$gold)
+
+varHist <- ggplot(data, aes(x=data$gold)) +  
+  theme_bw() +                                                                     #Set classic bw plot theme
+  geom_histogram(color="black", fill = "#34495E", alpha = 0.8, binwidth = 100) +   #Color options, binwidth set to 100 shares
+  labs(x = "Win Or Lose", y = "Count", title = paste0("Counts of ", varname))                                  
+
+varHist
+
+
+boxPlot <- ggplot(data, aes(x=win,y=gold), fill = gold) + 
+  theme_bw() +                                                              #Set classic bw plot theme
+  geom_hline(yintercept = median(data$gold), size = 0.8) +             #Add line for overall median shares
+  geom_point(size = 0.8) +                                                  #Add points
+  geom_boxplot(lwd = 0.5, width = 0.5, outlier.size = 0.8, alpha = 0.7) +   #Create boxplot
+  xlab("") + ylab("Amount of Gold") +                                             #Label axis
+  theme(legend.position = "none") +                                         #Remove legend
+  ggtitle(paste0("Wins vs ", varname)) +                                            #Set title
+  scale_color_startrek() + scale_fill_startrek()                            #Set color theme
+
+#Display plot
+boxPlot
+```
+```
+
